@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<span>Имя барбера</span> <b><span th:text="${barber.name}"></span></b>
+<br>
+<span> Описание барбера</span> <b><span th:text="${barber.description}"></span></b>
+
+<h2>Список клиентов</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Номер телефона</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${barber.customerList}">
+        <td th:text="${customer.customerName}"></td>
+        <th th:text="${customer.phoneNumber}"></th>
+        <td>
+            <form th:action="@{/barbers/{barberId}/delete-customer/{customerId}(barberId=${barber.id}, customerId=${customer.id})}" th:method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Добавить нового клиента</h2>
+<form th:action="@{/barbers/{id}/add-customer(id=${barber.id})}" method="post" th:object="${newCustomer}">
+    <input type="text" th:field="*{customerName}" placeholder="Имя клиента">
+    <br>
+    <br>
+    <input type="number" th:field="*{phoneNumber}" placeholder="Номер телефона">
+    <br>
+    <br>
+    <button type="submit">Добавить</button>
+</form>
+<br>
+<br>
+<a href="/barbers/">К барберам</a>
+</body>
+</html>

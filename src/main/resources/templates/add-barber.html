@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Форма барбера</title>
+</head>
+<body>
+<h1>Ввод информации о барбере</h1>
+
+<form th:action="@{/barbers/saveBarber}" th:object="${barber}" method="post">
+    <div>
+        <label>Имя</label>
+        <input type="text" aria-describedby="emailHelp" th:field="*{name}" />
+        <br>
+        <br>
+        <label >Описание</label>
+        <input type="text" aria-describedby="emailHelp" th:field="*{description}" />
+        <br>
+        <br>
+        <button type="submit">Добавить</button>
+    </div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список барберов</title>
+</head>
+<body>
+<h1>Список барберов</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Изменение</th>
+        <th>Удаление</th>
+        <th>К клиентам барбера</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="barber : ${barbers}">
+        <td th:text="${barber.name}"><a th:href="@{/barbers/{id}(id=${barber.id})}"> </a></td>
+        <td>
+            <a th:href="@{/barbers/editBarber/{id}(id=${barber.id})}">Изменить</a>
+        </td>
+        <td>
+            <form th:action="@{/barbers/deleteBarber}" th:method="delete">
+                <input type="hidden" name="id" th:value="${barber.id}"/>
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/barbers/{id}(id=${barber.id})}">
+                <button type="submit" value="">Клиенты</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<input type="button" value="Добавить" onclick="window.location.href='/barbers/addNewBarber'">
+</body>
+</html>

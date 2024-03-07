@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Barber</title>
+</head>
+<body>
+<h1>Изменить барбера</h1>
+
+
+<form th:method="put" th:action="@{/barbers/updateBarber}" th:object="${barber}">
+    <input type="hidden" name="id" th:value="${barber.id}" />
+    <label>Имя: <input type="text" th:field="*{name}" /></label><br />
+    <label>Описание: <input type="text" th:field="*{description}" /></label><br />
+    <button type="submit">Сохранить</button>
+</form>
+</body>
+</html>
